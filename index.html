@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Logique - Entraînement Cérébral</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête avec informations du jeu -->
+        <header class="game-header">
+            <h1><i class="fas fa-puzzle-piece"></i> Puzzle Logique Pro</h1>
+            <div class="game-info">
+                <div class="info-box">
+                    <span class="info-label">Niveau:</span>
+                    <span id="level-display" class="info-value">1</span>
+                </div>
+                <div class="info-box">
+                    <span class="info-label">Temps:</span>
+                    <span id="timer-display" class="info-value">02:00</span>
+                </div>
+                <div class="info-box">
+                    <span class="info-label">Score:</span>
+                    <span id="score-display" class="info-value">0</span>
+                </div>
+                <button id="reset-btn" class="btn"><i class="fas fa-redo"></i> Recommencer</button>
+                <button id="hint-btn" class="btn"><i class="fas fa-lightbulb"></i> Indice</button>
+            </div>
+        </header>
+
+        <!-- Zone de jeu principale -->
+        <main class="game-area">
+            <!-- Plateau de jeu -->
+            <div class="game-section">
+                <h2><i class="fas fa-border-all"></i> Plateau de Jeu</h2>
+                <div class="grid-container">
+                    <canvas id="game-grid" width="400" height="400"></canvas>
+                    <div class="grid-overlay" id="grid-overlay"></div>
+                </div>
+                <div class="grid-info">
+                    Dimensions: <span id="grid-size">4x4</span>
+                </div>
+            </div>
+
+            <!-- Zone des pièces disponibles -->
+            <div class="pieces-section">
+                <h2><i class="fas fa-shapes"></i> Pièces Disponibles</h2>
+                <div class="pieces-container" id="pieces-container">
+                    <!-- Les pièces seront générées ici dynamiquement -->
+                </div>
+                <div class="controls">
+                    <button id="rotate-btn" class="btn"><i class="fas fa-sync-alt"></i> Rotation (R)</button>
+                    <button id="flip-btn" class="btn"><i class="fas fa-arrows-alt-h"></i> Retourner (F)</button>
+                    <div class="instructions">
+                        <p><i class="fas fa-mouse-pointer"></i> Glisser-déposer les pièces</p>
+                        <p><i class="fas fa-keyboard"></i> R = Rotation | F = Retourner</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Section des messages -->
+        <div class="message-section">
+            <div id="message-box" class="message-box">
+                <p>Placez toutes les pièces sur le plateau pour compléter le puzzle!</p>
+            </div>
+            <div class="progress-section">
+                <div class="progress-label">Progression:</div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <span id="progress-text" class="progress-text">0%</span>
+            </div>
+        </div>
+
+        <!-- Section de sélection de niveau -->
+        <div class="level-section">
+            <h3><i class="fas fa-chart-line"></i> Sélection du Niveau</h3>
+            <div class="level-buttons" id="level-buttons">
+                <!-- Les boutons de niveau seront générés ici -->
+            </div>
+        </div>
+
+        <!-- Fenêtre modale pour les messages -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h2 id="modal-title">Félicitations!</h2>
+                <p id="modal-message">Vous avez complété le niveau avec succès!</p>
+                <div class="modal-stats">
+                    <p>Temps restant: <span id="modal-time">00:00</span></p>
+                    <p>Score gagné: <span id="modal-score">+100</span></p>
+                </div>
+                <div class="modal-buttons">
+                    <button id="next-level-btn" class="btn btn-success">Niveau Suivant</button>
+                    <button id="retry-btn" class="btn">Rejouer</button>
+                    <button id="close-modal-btn" class="btn">Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

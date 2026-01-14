@@ -1,0 +1,454 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e6e6e6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(25, 25, 35, 0.9);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* En-tête du jeu */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+}
+
+.game-header h1 {
+    color: #3498db;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    background: rgba(52, 152, 219, 0.1);
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    min-width: 120px;
+}
+
+.info-label {
+    display: block;
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    color: #3498db;
+}
+
+#timer-display {
+    color: #e74c3c;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Zone de jeu principale */
+.game-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 900px) {
+    .game-area {
+        grid-template-columns: 1fr;
+    }
+}
+
+.game-section, .pieces-section {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.game-section h2, .pieces-section h2 {
+    color: #2ecc71;
+    margin-bottom: 20px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Plateau de jeu */
+.grid-container {
+    position: relative;
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+}
+
+#game-grid {
+    background: #0f3460;
+    border-radius: 8px;
+    border: 3px solid #3498db;
+    display: block;
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.grid-info {
+    text-align: center;
+    margin-top: 15px;
+    color: #95a5a6;
+}
+
+/* Zone des pièces */
+.pieces-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    min-height: 200px;
+    padding: 15px;
+    background: rgba(15, 52, 96, 0.3);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.piece {
+    width: 100px;
+    height: 100px;
+    background: rgba(46, 204, 113, 0.1);
+    border: 2px solid #2ecc71;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.piece:hover {
+    transform: scale(1.05);
+    background: rgba(46, 204, 113, 0.2);
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+}
+
+.piece.dragging {
+    opacity: 0.8;
+    cursor: grabbing;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+}
+
+.piece.used {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: #7f8c8d;
+}
+
+.piece-cell {
+    position: absolute;
+    background: #2ecc71;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Contrôles */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.instructions {
+    background: rgba(52, 152, 219, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.instructions p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #bdc3c7;
+}
+
+/* Boutons */
+.btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.btn-success:hover {
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+#reset-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+#reset-btn:hover {
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Section des messages */
+.message-section {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+.message-box {
+    background: rgba(155, 89, 182, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #9b59b6;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.progress-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.progress-label {
+    font-weight: 600;
+    color: #9b59b6;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #9b59b6, #3498db);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+
+.progress-text {
+    font-weight: bold;
+    color: #9b59b6;
+    min-width: 50px;
+}
+
+/* Section des niveaux */
+.level-section {
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+.level-section h3 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.level-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.level-btn {
+    padding: 10px 15px;
+    background: rgba(241, 196, 15, 0.1);
+    color: #f1c40f;
+    border: 2px solid #f1c40f;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 60px;
+}
+
+.level-btn:hover {
+    background: rgba(241, 196, 15, 0.2);
+    transform: translateY(-2px);
+}
+
+.level-btn.active {
+    background: #f1c40f;
+    color: #1a1a2e;
+}
+
+.level-btn.completed {
+    background: rgba(46, 204, 113, 0.2);
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
+/* Fenêtre modale */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    border: 3px solid #3498db;
+    box-shadow: 0 0 40px rgba(52, 152, 219, 0.5);
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: #2ecc71;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.modal-message {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #e6e6e6;
+}
+
+.modal-stats {
+    background: rgba(52, 152, 219, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.modal-stats p {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #3498db;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .game-info {
+        justify-content: center;
+    }
+    
+    .grid-container {
+        width: 300px;
+        height: 300px;
+    }
+    
+    #game-grid {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
